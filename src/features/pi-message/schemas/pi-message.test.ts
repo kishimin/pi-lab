@@ -13,7 +13,7 @@ describe("メッセージ", () => {
 
     expect(result.success).toBe(false);
     expect(result.error?.issues[0].message).toBe(
-      "メッセージは201文字以内で入力してください",
+      "メッセージは200文字以内で入力してください",
     );
   });
 });

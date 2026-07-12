@@ -16,3 +16,21 @@ export const Default: Story = {
     });
   },
 };
+
+export const Error: Story = {
+  play: async ({ step, canvas, userEvent }) => {
+    await step(
+      "メッセージのテキスト入力がエラーの時エラーメッセージが表示される",
+      async () => {
+        await userEvent.type(
+          canvas.getByRole("textbox", { name: "メッセージ" }),
+          "あ".repeat(201),
+        );
+
+        expect(
+          canvas.getByText("メッセージは200文字以内で入力してください"),
+        ).toBeVisible();
+      },
+    );
+  },
+};
