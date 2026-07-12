@@ -14,6 +14,7 @@
     "test-coverage": "vitest --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "test-storybook": "test-storybook",
     "playwright": "playwright test ."
   },
   "dependencies": {
@@ -34,6 +35,7 @@
     "@storybook/addon-docs": "^10.4.6",
     "@storybook/addon-vitest": "^10.4.6",
     "@storybook/react-vite": "^10.4.6",
+    "@storybook/test-runner": "^0.24.4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/jest": "^30.0.0",
