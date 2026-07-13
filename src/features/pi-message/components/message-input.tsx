@@ -16,6 +16,8 @@ export const MessageInput = () => {
       <label htmlFor={"message"}>{"メッセージ"}</label>
       <input id={"message"} {...register("message")} />
       <p>{errors.message?.message}</p>
+
+      <button>{"πで伝える"}</button>
     </>
   );
 };

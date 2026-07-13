@@ -14,6 +14,10 @@ export const Default: Story = {
     await step("メッセージのテキスト入力が表示される", () => {
       expect(canvas.getByRole("textbox", { name: "メッセージ" })).toBeVisible();
     });
+
+    await step("πで伝えるボタンが表示される", () => {
+      expect(canvas.getByRole("button", { name: "πで伝える" })).toBeVisible();
+    });
   },
 };
 
