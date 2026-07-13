@@ -7,17 +7,23 @@ export const MessageInput = () => {
   const {
     register,
     formState: { errors },
+    handleSubmit,
   } = useForm<PiMessageInputSchema>({
     resolver: zodResolver(piMessageInputSchema),
     mode: "onChange",
   });
+
+  const onSubmit = (data) => console.log(data);
+
   return (
     <>
-      <label htmlFor={"message"}>{"メッセージ"}</label>
-      <input id={"message"} {...register("message")} />
-      <p>{errors.message?.message}</p>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor={"message"}>{"メッセージ"}</label>
+        <input id={"message"} {...register("message")} />
+        <p>{errors.message?.message}</p>
 
-      <button>{"πで伝える"}</button>
+        <button type={"submit"}>{"πで伝える"}</button>
+      </form>
     </>
   );
 };
