@@ -13,11 +13,15 @@ export const MessageInput = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = () => console.log("submit");
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={() => {
+          void handleSubmit(onSubmit);
+        }}
+      >
         <label htmlFor={"message"}>{"メッセージ"}</label>
         <input id={"message"} {...register("message")} />
         <p>{errors.message?.message}</p>
