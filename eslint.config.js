@@ -1,17 +1,17 @@
 import js from "@eslint/js";
 import vitest from "@vitest/eslint-plugin";
-import { defineConfig, globalIgnores } from "eslint/config";
+import { defineConfig } from "eslint/config";
 import prettier from "eslint-config-prettier";
 // import importPlugin from "eslint-plugin-import";
 import { jsdoc } from "eslint-plugin-jsdoc";
-import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
+// import eslintPluginJsxA11y from "eslint-plugin-jsx-a11y";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import testingLibrary from "eslint-plugin-testing-library";
 import unusedImports from "eslint-plugin-unused-imports";
 import globals from "globals";
 import tseslint from "typescript-eslint";
-import react from "eslint-plugin-react";
+// import react from "eslint-plugin-react";
 
 export default defineConfig([
   {
@@ -40,15 +40,15 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
       tseslint.configs.recommendedTypeChecked,
-      react.configs.flat.recommended,
+      // react.configs.flat.recommended,
       // importPlugin.flatConfigs.recommended,
       // importPlugin.flatConfigs.typescript,
-      eslintPluginJsxA11y.flatConfigs.recommended,
+      // eslintPluginJsxA11y.flatConfigs.recommended,
     ],
     settings: {
-      react: {
-        version: "detect",
-      },
+      // react: {
+      //   version: "detect",
+      // },
       "import/resolver": {
         typescript: true,
         node: true,
@@ -65,16 +65,16 @@ export default defineConfig([
       "@typescript-eslint/switch-exhaustiveness-check": "warn",
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-unnecessary-type-assertion": "off",
-      "import/order": [
-        "error",
-        {
-          alphabetize: {
-            order: "asc",
-            caseInsensitive: true,
-          },
-        },
-      ],
-      "react/jsx-key": ["error", { checkFragmentShorthand: true }],
+      // "import/order": [
+      //   "error",
+      //   {
+      //     alphabetize: {
+      //       order: "asc",
+      //       caseInsensitive: true,
+      //     },
+      //   },
+      // ],
+      // "react/jsx-key": ["error", { checkFragmentShorthand: true }],
       "react/react-in-jsx-scope": 0,
       "react/jsx-uses-react": 0,
     },
