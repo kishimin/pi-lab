@@ -19,5 +19,13 @@ export const Default: Story = {
         }),
       );
     });
+
+    await step("割り切れないため処理に時間がかかっていますと表示される", () => {
+      expect(
+        canvas.getByRole("heading", {
+          name: "割り切れないため処理に時間がかかっています",
+        }),
+      ).toBeVisible();
+    });
   },
 };
