@@ -18,5 +18,11 @@ export const Default: Story = {
     await step("メッセージの結果が表示される", () => {
       expect(canvas.getByRole("heading", { name: args.message })).toBeVisible();
     });
+
+    await step("別のメッセージを試すボタンが表示される", () => {
+      expect(
+        canvas.getByRole("button", { name: "別のメッセージを試す" }),
+      ).toBeVisible();
+    });
   },
 };

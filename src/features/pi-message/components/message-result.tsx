@@ -7,7 +7,9 @@ export const MessageResult = (props: Props) => {
 
   return (
     <>
-      <h2>{"πでは伝わりません"}</h2>
+      <h2>{message}</h2>
+
+      <button>{"別のメッセージを試す"}</button>
     </>
   );
 };
