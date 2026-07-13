@@ -12,12 +12,16 @@ type Story = StoryObj<typeof meta>;
 /** Default state */
 export const Default: Story = {
   play: async ({ step, canvas }) => {
-    await step("メッセージのテキスト入力が表示される", () => {
-      expect(canvas.getByRole("textbox", { name: "メッセージ" })).toBeVisible();
+    await step("メッセージのテキスト入力が表示される", async () => {
+      await expect(
+        canvas.getByRole("textbox", { name: "メッセージ" }),
+      ).toBeVisible();
     });
 
-    await step("πで伝えるボタンが表示される", () => {
-      expect(canvas.getByRole("button", { name: "πで伝える" })).toBeVisible();
+    await step("πで伝えるボタンが表示される", async () => {
+      await expect(
+        canvas.getByRole("button", { name: "πで伝える" }),
+      ).toBeVisible();
     });
   },
 };
@@ -33,7 +37,7 @@ export const Error: Story = {
           "あ".repeat(201),
         );
 
-        expect(
+        await expect(
           canvas.getByText("メッセージは200文字以内で入力してください"),
         ).toBeVisible();
       },
@@ -51,7 +55,7 @@ export const SubmitFormError: Story = {
           canvas.getByRole("button", { name: "πで伝える" }),
         );
 
-        expect(canvas.getByText("メッセージは必須です")).toBeVisible();
+        await expect(canvas.getByText("メッセージは必須です")).toBeVisible();
       },
     );
   },
