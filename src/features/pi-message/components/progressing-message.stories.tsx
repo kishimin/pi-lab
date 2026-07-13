@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { Progress } from "./progress";
+import { Progress } from "./progressing-message";
 import { expect } from "storybook/test";
 
 const meta = {
