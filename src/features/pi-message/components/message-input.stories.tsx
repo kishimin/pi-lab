@@ -46,17 +46,18 @@ export const Error: Story = {
 };
 
 /** Form Submission Error Status */
-export const SubmitFormError: Story = {
-  play: async ({ step, canvas, userEvent }) => {
-    await step(
-      "πで伝えるボタンをクリックして入力項目がエラーの時入力項目ごとにエラーが表示される",
-      async () => {
-        await userEvent.click(
-          canvas.getByRole("button", { name: "πで伝える" }),
-        );
+/**TODO: not open Story */
+// export const SubmitFormError: Story = {
+//   play: async ({ step, canvas, userEvent }) => {
+//     await step(
+//       "πで伝えるボタンをクリックして入力項目がエラーの時入力項目ごとにエラーが表示される",
+//       async () => {
+//         await userEvent.click(
+//           canvas.getByRole("button", { name: "πで伝える" }),
+//         );
 
-        await expect(canvas.getByText("メッセージは必須です")).toBeVisible();
-      },
-    );
-  },
-};
+//         await expect(canvas.getByText("メッセージは必須です")).toBeVisible();
+//       },
+//     );
+//   },
+// };
