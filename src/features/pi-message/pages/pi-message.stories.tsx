@@ -22,6 +22,12 @@ export const Default: Story = {
       ).toBeVisible();
     });
 
+    await step("メッセージ入力が表示される", async () => {
+      await expect(
+        canvas.getByRole("textbox", { name: "メッセージ" }),
+      ).toBeVisible();
+    });
+
     await step("フッターが表示される", async () => {
       await expect(canvas.getByRole("contentinfo")).toBeVisible();
     });
