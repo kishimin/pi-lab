@@ -21,5 +21,9 @@ export const Default: Story = {
         canvas.getByRole("heading", { name: "πで伝える" }),
       ).toBeVisible();
     });
+
+    await step("フッターが表示される", async () => {
+      await expect(canvas.getByRole("contentinfo")).toBeVisible();
+    });
   },
 };
