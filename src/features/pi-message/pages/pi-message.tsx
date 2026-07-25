@@ -1,7 +1,7 @@
 import { Footer } from "../../../components/footer";
 import { Header } from "../../../components/header";
 import { useForm } from "react-hook-form";
-import { PageType, type PiMessageInputSchema } from "../types/pi-message";
+import { type PageType, type PiMessageInputSchema } from "../types/pi-message";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { piMessageInputSchema } from "../schemas/pi-message";
 import { Progress } from "../components/progressing-message";
