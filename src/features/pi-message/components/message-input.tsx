@@ -18,15 +18,17 @@ export const MessageInput = () => {
   return (
     <>
       <form
-        onSubmit={() => {
-          void handleSubmit(onSubmit);
+        noValidate
+        onSubmit={(e) => {
+          e.preventDefault();
+          void handleSubmit(onSubmit)(e);
         }}
       >
         <label htmlFor={"message"}>{"メッセージ"}</label>
         <input id={"message"} {...register("message")} />
         <p>{errors.message?.message}</p>
 
-        <button type={"submit"}>{"πで伝える"}</button>
+        <button>{"πで伝える"}</button>
       </form>
     </>
   );
