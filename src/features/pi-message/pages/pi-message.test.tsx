@@ -1,6 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import { PiMessagePage } from "./pi-message";
 import userEvent from "@testing-library/user-event";
+import { act } from "react";
+import { vi } from "vitest";
+
+beforeEach(() => {
+  vi.useFakeTimers({ shouldAdvanceTime: true });
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 test("待機状態から2秒後別のメッセージを試すボタンが表示される", async () => {
   render(<PiMessagePage />);
@@ -15,11 +25,11 @@ test("待機状態から2秒後別のメッセージを試すボタンが表示�
     }),
   ).toBeVisible();
 
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(2000);
+  });
+
   expect(
-    await screen.findByRole(
-      "button",
-      { name: "別のメッセージを試す" },
-      { timeout: 3000 },
-    ),
+    screen.getByRole("button", { name: "別のメッセージを試す" }),
   ).toBeVisible();
 });
