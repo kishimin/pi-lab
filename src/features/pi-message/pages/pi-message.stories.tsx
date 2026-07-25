@@ -74,3 +74,28 @@ export const SubmitFormError: Story = {
     );
   },
 };
+
+/** Form Submission Success Status */
+export const SubmitFormSuccess: Story = {
+  play: async ({ step, canvas, userEvent }) => {
+    await step(
+      "メッセージのエラーがない時πで伝えるボタンをクリックすると待機状態となる",
+      async () => {
+        await userEvent.type(
+          canvas.getByRole("textbox", { name: "メッセージ" }),
+          "a",
+        );
+
+        await userEvent.click(
+          canvas.getByRole("button", { name: "πで伝える" }),
+        );
+
+        await expect(
+          canvas.getByRole("heading", {
+            name: "割り切れないため処理に時間がかかっています",
+          }),
+        ).toBeVisible();
+      },
+    );
+  },
+};
