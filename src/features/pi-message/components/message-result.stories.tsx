@@ -1,8 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { MessageResult } from "./message-result";
-import { expect } from "storybook/test";
+import { expect, fn } from "storybook/test";
 
 const meta = {
+  args: {
+    onClickRetryButton: fn(),
+  },
   component: MessageResult,
 } satisfies Meta<typeof MessageResult>;
 

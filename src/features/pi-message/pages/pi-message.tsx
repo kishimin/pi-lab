@@ -58,7 +58,10 @@ export const PiMessagePage = () => {
     case "result":
       return (
         <Layout title={"πで伝える"}>
-          <MessageResult message={generateMessageResult()} />
+          <MessageResult
+            message={generateMessageResult()}
+            onClickRetryButton={() => setPageType("input")}
+          />
         </Layout>
       );
   }
