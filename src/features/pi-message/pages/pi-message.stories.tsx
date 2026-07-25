@@ -22,14 +22,55 @@ export const Default: Story = {
       ).toBeVisible();
     });
 
-    await step("メッセージ入力が表示される", async () => {
+    await step("メッセージのテキスト入力が表示される", async () => {
       await expect(
         canvas.getByRole("textbox", { name: "メッセージ" }),
+      ).toBeVisible();
+    });
+
+    await step("πで伝えるボタンが表示される", async () => {
+      await expect(
+        canvas.getByRole("button", { name: "πで伝える" }),
       ).toBeVisible();
     });
 
     await step("フッターが表示される", async () => {
       await expect(canvas.getByRole("contentinfo")).toBeVisible();
     });
+  },
+};
+
+/** Error state */
+export const Error: Story = {
+  play: async ({ step, canvas, userEvent }) => {
+    await step(
+      "メッセージのテキスト入力がエラーの時エラーメッセージが表示される",
+      async () => {
+        await userEvent.type(
+          canvas.getByRole("textbox", { name: "メッセージ" }),
+          "あ".repeat(201),
+        );
+
+        await expect(
+          canvas.getByText("メッセージは200文字以内で入力してください"),
+        ).toBeVisible();
+      },
+    );
+  },
+};
+
+/** Form Submission Error Status */
+export const SubmitFormError: Story = {
+  play: async ({ step, canvas, userEvent }) => {
+    await step(
+      "πで伝えるボタンをクリックして入力項目がエラーの時入力項目ごとにエラーが表示される",
+      async () => {
+        await userEvent.click(
+          canvas.getByRole("button", { name: "πで伝える" }),
+        );
+
+        await expect(canvas.getByText("メッセージは必須です")).toBeVisible();
+      },
+    );
   },
 };
