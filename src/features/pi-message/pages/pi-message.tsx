@@ -1,5 +1,3 @@
-import { Footer } from "../../../components/footer";
-import { Header } from "../../../components/header";
 import { useForm } from "react-hook-form";
 import { type PageType, type PiMessageInputSchema } from "../types/pi-message";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +6,7 @@ import { Progress } from "../components/progressing-message";
 import { useEffect, useState } from "react";
 import { MessageResult } from "../components/message-result";
 import { generateMessageResult } from "../utils/pi-message";
+import { Layout } from "../../../components/layout";
 
 export const PiMessagePage = () => {
   const [pageType, setPageType] = useState<PageType>("input");
@@ -38,11 +37,7 @@ export const PiMessagePage = () => {
   switch (pageType) {
     case "input":
       return (
-        <>
-          <Header />
-
-          <h1>{"πで伝える"}</h1>
-
+        <Layout title="πで伝える">
           <form
             noValidate
             onSubmit={(e) => {
@@ -56,23 +51,15 @@ export const PiMessagePage = () => {
 
             <button>{"πで伝える"}</button>
           </form>
-
-          <Footer />
-        </>
+        </Layout>
       );
     case "progress":
       return <Progress />;
     case "result":
       return (
-        <>
-          <Header />
-
-          <h1>{"πで伝える"}</h1>
-
+        <Layout title={"πで伝える"}>
           <MessageResult message={generateMessageResult()} />
-
-          <Footer />
-        </>
+        </Layout>
       );
   }
 };
