@@ -12,7 +12,7 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-test("待機状態から2秒後別のメッセージを試すボタンが表示される", async () => {
+test("待機状態から2秒後別のメッセージの結果画面が表示される", async () => {
   render(<PiMessagePage />);
   const user = userEvent.setup();
 
@@ -32,4 +32,5 @@ test("待機状態から2秒後別のメッセージを試すボタンが表示�
   expect(
     screen.getByRole("button", { name: "別のメッセージを試す" }),
   ).toBeVisible();
+  expect(screen.getByRole("banner")).toBeVisible();
 });
