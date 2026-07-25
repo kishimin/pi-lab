@@ -1,12 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import { PiMessagePage } from "./pi-message";
 import { vi } from "vitest";
-import userEvent from "@testing-library/user-event";
+import { act } from "react";
+import { userEventSetup } from "../../../tests/utils";
+
+beforeEach(() => {
+  vi.useFakeTimers();
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 test("待機状態から2秒後別のメッセージを試すボタンが表示される", async () => {
-  vi.useFakeTimers({ shouldAdvanceTime: true });
   render(<PiMessagePage />);
-  const user = userEvent.setup();
+  const user = userEventSetup();
 
   await user.type(screen.getByRole("textbox", { name: "メッセージ" }), "a");
   await user.click(screen.getByRole("button", { name: "πで伝える" }));
@@ -17,9 +25,11 @@ test("待機状態から2秒後別のメッセージを試すボタンが表示�
     }),
   ).toBeVisible();
 
-  vi.advanceTimersByTime(2000);
+  act(() => {
+    vi.advanceTimersByTime(2000);
+  });
 
   expect(
-    await screen.findByRole("button", { name: "別のメッセージを試す" }),
+    screen.getByRole("button", { name: "別のメッセージを試す" }),
   ).toBeVisible();
 });
