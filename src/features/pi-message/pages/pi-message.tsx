@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { MessageResult } from "../components/message-result";
 import { generateMessageResult } from "../utils/pi-message";
 import { Layout } from "../../../components/layout";
+import { pageTitles } from "../../../types/page-texts";
 
 export const PiMessagePage = () => {
   const [pageType, setPageType] = useState<PageType>("input");
@@ -37,7 +38,7 @@ export const PiMessagePage = () => {
   switch (pageType) {
     case "input":
       return (
-        <Layout title="πで伝える">
+        <Layout title={pageTitles.piMessage}>
           <form
             noValidate
             onSubmit={(e) => {
@@ -53,11 +54,13 @@ export const PiMessagePage = () => {
           </form>
         </Layout>
       );
+
     case "progress":
       return <Progress />;
+
     case "result":
       return (
-        <Layout title={"πで伝える"}>
+        <Layout title={pageTitles.piMessage}>
           <MessageResult
             message={generateMessageResult()}
             onClickRetryButton={() => setPageType("input")}

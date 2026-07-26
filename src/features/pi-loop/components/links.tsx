@@ -1,11 +1,11 @@
 import { Link } from "react-router";
-import { PATHS } from "../../../types/path";
+import { paths } from "../../../types/page-texts";
 
 export const Links = () => {
   return (
     <ul>
       <li>
-        <Link to={PATHS.piMessage}>{"πで伝える"}</Link>
+        <Link to={paths.piMessage}>{"πで伝える"}</Link>
       </li>
     </ul>
   );
