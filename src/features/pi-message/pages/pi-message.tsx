@@ -22,14 +22,16 @@ export const PiMessagePage = () => {
   });
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setPageType("result");
-    }, 2000);
+    if (pageType === "progress") {
+      const timer = setTimeout(() => {
+        setPageType("result");
+      }, 2000);
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, []);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [pageType]);
 
   const onSubmit = () => {
     setPageType("progress");

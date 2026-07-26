@@ -54,3 +54,15 @@ test("別のメッセージを試すボタンをクリックするとメッセ�
 
   expect(screen.getByRole("textbox", { name: "メッセージ" })).toBeVisible();
 });
+
+test("メッセージ入力画面から2秒後別のメッセージの結果画面が表示されない", async () => {
+  setup();
+
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(2000);
+  });
+
+  expect(
+    screen.queryByRole("button", { name: "別のメッセージを試す" }),
+  ).not.toBeInTheDocument();
+});
