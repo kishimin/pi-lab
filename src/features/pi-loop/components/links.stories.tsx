@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Links } from "./links";
-import { expect } from "storybook/test";
+import { expect, within } from "storybook/test";
 
 const meta = {
   component: Links,
@@ -13,14 +13,21 @@ type Story = StoryObj<typeof meta>;
 /** Default state */
 export const Default: Story = {
   play: async ({ step, canvas }) => {
+    const list = canvas.getByRole("list");
+
     await step("リストが表示される", async () => {
-      await expect(canvas.getByRole("list")).toBeVisible();
+      await expect(list).toBeVisible();
     });
 
-    await step("実験1と表示される", async () => {
-      await expect(
-        canvas.getByRole("listitem", { name: "実験1" }),
-      ).toBeVisible();
+    const listItems = within(list).getAllByRole("listitem");
+
+    await step("リンクが表示される", async () => {
+      const expected = ["πで伝える"];
+      for (let index = 0; index < listItems.length; index++) {
+        await expect(
+          within(listItems[index]).getByRole("link", { name: expected[index] }),
+        ).toBeVisible();
+      }
     });
   },
 };
