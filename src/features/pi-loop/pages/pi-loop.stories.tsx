@@ -14,10 +14,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   play: async ({ step, canvas }) => {
     await step("割り切れない研究所のheadingが表示される", async () => {
-      // headerの割り切れない研究所も含む
       await expect(
-        canvas.getAllByRole("heading", { name: "割り切れない研究所" }),
-      ).toHaveLength(2);
+        canvas.getByRole("heading", { name: "割り切れない研究所" }),
+      ).toBeVisible();
     });
   },
 };
