@@ -16,5 +16,11 @@ export const Default: Story = {
     await step("リストが表示される", async () => {
       await expect(canvas.getByRole("list")).toBeVisible();
     });
+
+    await step("実験1と表示される", async () => {
+      await expect(
+        canvas.getByRole("listitem", { name: "実験1" }),
+      ).toBeVisible();
+    });
   },
 };
