@@ -1,5 +1,7 @@
+/// <reference types="vite/client" />
 import type { Preview } from "@storybook/react-vite";
 import { MemoryRouter } from "react-router";
+import "../src/index.css";
 
 const preview: Preview = {
   parameters: {
