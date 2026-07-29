@@ -35,3 +35,5 @@ storybook-static
 
 # Japanese
 docs/**/ja/
+
+coverage/
