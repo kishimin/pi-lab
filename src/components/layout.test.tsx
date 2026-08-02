@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { Layout } from "./layout";
 import type { ComponentProps } from "react";
+import { MemoryRouter } from "react-router";
 
 type Props = ComponentProps<typeof Layout>;
 
@@ -10,7 +11,11 @@ const defaultProps: Props = {
 };
 
 const setup = (props: Partial<Props> = {}) => {
-  render(<Layout {...defaultProps} {...props} />);
+  render(
+    <MemoryRouter>
+      <Layout {...defaultProps} {...props} />
+    </MemoryRouter>,
+  );
 };
 
 test("ヘッダーが表示される", () => {

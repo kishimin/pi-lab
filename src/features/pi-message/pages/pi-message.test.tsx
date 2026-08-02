@@ -3,6 +3,7 @@ import { PiMessagePage } from "./pi-message";
 import userEvent from "@testing-library/user-event";
 import { act } from "react";
 import { vi } from "vitest";
+import { MemoryRouter } from "react-router";
 
 beforeEach(() => {
   vi.useFakeTimers({ shouldAdvanceTime: true });
@@ -14,7 +15,11 @@ afterEach(() => {
 
 const setup = () => {
   const user = userEvent.setup();
-  render(<PiMessagePage />);
+  render(
+    <MemoryRouter>
+      <PiMessagePage />
+    </MemoryRouter>,
+  );
 
   return { user };
 };

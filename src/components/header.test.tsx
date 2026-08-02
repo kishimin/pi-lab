@@ -23,6 +23,7 @@ describe("Header", () => {
         <Header />
         <Routes>
           <Route path={paths.index} element={<p>一覧画面</p>} />
+          <Route path={paths.piMessage} element={null} />
         </Routes>
       </MemoryRouter>,
     );
