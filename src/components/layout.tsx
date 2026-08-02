@@ -11,7 +11,7 @@ export const Layout = (props: Props) => {
   const { children, title } = props;
 
   return (
-    <>
+    <div className={"flex min-h-screen flex-col"}>
       <Header />
 
       {title && <h1>{title}</h1>}
@@ -19,6 +19,6 @@ export const Layout = (props: Props) => {
       {children}
 
       <Footer />
-    </>
+    </div>
   );
 };
