@@ -3,7 +3,7 @@ import { paths } from "../../../types/page-texts";
 
 export const Links = () => {
   return (
-    <ul>
+    <ul className={"text-center"}>
       <li>
         <Link to={paths.piMessage}>{"πで伝える"}</Link>
       </li>
