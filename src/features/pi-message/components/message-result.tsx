@@ -12,7 +12,12 @@ export const MessageResult = (props: Props) => {
     <section className={"flex flex-1 flex-col items-center justify-center"}>
       <h2>{message}</h2>
 
-      <button onClick={onClickRetryButton}>{"別のメッセージを試す"}</button>
+      <button
+        className={"rounded bg-[#7cc7e8] px-4 py-2 shadow"}
+        onClick={onClickRetryButton}
+      >
+        {"別のメッセージを試す"}
+      </button>
     </section>
   );
 };
