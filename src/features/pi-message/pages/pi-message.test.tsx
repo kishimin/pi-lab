@@ -45,7 +45,7 @@ test("待機状態から2秒後別のメッセージの結果画面が表示さ�
   expect(screen.getByRole("banner")).toBeVisible();
 });
 
-test("別のメッセージを試すボタンをクリックするとメッセージ入力画面が表示される", async () => {
+test("別のメッセージを試すボタンをクリックすると空のメッセージ入力画面が表示される", async () => {
   const { user } = setup();
   await user.type(screen.getByRole("textbox", { name: "メッセージ" }), "a");
   await user.click(screen.getByRole("button", { name: "πで伝える" }));
@@ -57,7 +57,7 @@ test("別のメッセージを試すボタンをクリックするとメッセ�
     screen.getByRole("button", { name: "別のメッセージを試す" }),
   );
 
-  expect(screen.getByRole("textbox", { name: "メッセージ" })).toBeVisible();
+  expect(screen.getByRole("textbox", { name: "メッセージ" })).toHaveValue("");
 });
 
 test("メッセージ入力画面から2秒後別のメッセージの結果画面が表示されない", async () => {
