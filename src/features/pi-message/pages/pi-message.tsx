@@ -41,19 +41,21 @@ export const PiMessagePage = () => {
     case "input":
       return (
         <Layout title={pageTitles.piMessage}>
-          <form
-            noValidate
-            onSubmit={(e) => {
-              e.preventDefault();
-              void handleSubmit(onSubmit)(e);
-            }}
-          >
-            <label htmlFor={"message"}>{"メッセージ"}</label>
-            <input id={"message"} {...register("message")} />
-            <p>{errors.message?.message}</p>
+          <main className={"flex flex-1 items-center justify-center"}>
+            <form
+              noValidate
+              onSubmit={(e) => {
+                e.preventDefault();
+                void handleSubmit(onSubmit)(e);
+              }}
+            >
+              <label htmlFor={"message"}>{"メッセージ"}</label>
+              <input id={"message"} {...register("message")} />
+              <p>{errors.message?.message}</p>
 
-            <button>{"πで伝える"}</button>
-          </form>
+              <button>{"πで伝える"}</button>
+            </form>
+          </main>
         </Layout>
       );
 
