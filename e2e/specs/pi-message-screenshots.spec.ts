@@ -40,7 +40,7 @@ test("正常入力、待機状態、結果表示のスクリーンショット�
   await test.step("結果表示画面", async () => {
     await page.clock.fastForward(2_000);
     await expect(
-      page.getByRole("heading", { name: "eでは伝わるのかな？" }),
+      piMessagePage.messageResult.getMessageResult("eでは伝わるのかな？"),
     ).toBeVisible();
     await expect(piMessagePage.messageResult.getRetryButton).toBeVisible();
     await captureScreenshot(page, testInfo, "result");
