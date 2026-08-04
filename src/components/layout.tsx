@@ -14,7 +14,9 @@ export const Layout = (props: Props) => {
     <div className={"flex min-h-screen flex-col"}>
       <Header />
 
-      {title && <h1 className={"text-center text-4xl font-bold"}>{title}</h1>}
+      {title && (
+        <h1 className={"mt-4 text-center text-4xl font-bold"}>{title}</h1>
+      )}
 
       {children}
 
