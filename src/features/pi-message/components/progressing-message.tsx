@@ -2,7 +2,7 @@ export const Progress = () => {
   return (
     <main
       className={
-        "flex min-h-screen flex-col items-center justify-center gap-4 px-4 text-center"
+        "flex min-h-screen flex-col items-center justify-center gap-4 px-4 text-center text-4xl font-bold"
       }
     >
       <h3 className={"break-all"}>
