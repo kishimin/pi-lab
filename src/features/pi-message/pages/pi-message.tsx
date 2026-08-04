@@ -43,6 +43,10 @@ export const PiMessagePage = () => {
     setPageType("input");
   };
 
+  const messageInputStateClassName = errors.message
+    ? "border-red-600 hover:border-red-700 focus:border-red-600 focus:ring-red-100"
+    : "border-slate-300 hover:border-slate-400 focus:border-sky-500 focus:ring-sky-100";
+
   switch (pageType) {
     case "input":
       return (
@@ -65,7 +69,7 @@ export const PiMessagePage = () => {
               <input
                 id={"message"}
                 className={
-                  "mt-2 mb-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition-colors hover:border-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                  `mt-2 mb-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl border bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition-colors focus:ring-4 ${messageInputStateClassName}`
                 }
                 {...register("message")}
               />
