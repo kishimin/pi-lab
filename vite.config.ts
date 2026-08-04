@@ -26,6 +26,12 @@ export default defineConfig({
           globals: true,
           environment: "jsdom",
           setupFiles: ["./src/tests/setup.ts"],
+          exclude: [
+            ...configDefaults.exclude,
+            "**/e2e/**", // e2eファイルを除外
+            "**/*.stories.{ts,tsx,mdx}", // storyファイルを除外
+            "**/.storybook/**",
+          ],
         },
       },
       {
@@ -51,12 +57,6 @@ export default defineConfig({
           },
         },
       },
-    ],
-    exclude: [
-      ...configDefaults.exclude,
-      "**/e2e/**", // e2eファイルを除外
-      "**/*.stories.{ts,tsx,mdx}", // storyファイルを除外
-      "**/.storybook/**",
     ],
   },
 });
