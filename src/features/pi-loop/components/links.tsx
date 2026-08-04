@@ -5,7 +5,9 @@ export const Links = () => {
   return (
     <ul className={"text-center"}>
       <li>
-        <Link to={paths.piMessage}>{"πで伝える"}</Link>
+        <Link className={"text-xl"} to={paths.piMessage}>
+          {"πで伝える"}
+        </Link>
       </li>
     </ul>
   );
