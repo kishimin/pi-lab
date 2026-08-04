@@ -15,7 +15,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test-storybook": "test-storybook",
-    "playwright": "playwright test ."
+    "playwright": "playwright test .",
+    "screenshots:pi-message": "playwright test e2e/specs/pi-message-screenshots.spec.ts --project=chromium"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.2",

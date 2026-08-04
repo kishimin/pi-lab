@@ -17,11 +17,11 @@ export class MessageInput {
 
   /** input Message */
   async fillMessageInput(message: string) {
-    this.getMessageInput.fill(message);
+    await this.getMessageInput.fill(message);
   }
 
   /** submit message */
   async submitMessage() {
-    this.getPiMessageButton.click();
+    await this.getPiMessageButton.click();
   }
 }
