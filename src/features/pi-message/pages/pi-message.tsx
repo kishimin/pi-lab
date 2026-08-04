@@ -51,33 +51,41 @@ export const PiMessagePage = () => {
     case "input":
       return (
         <Layout title={pageTitles.piMessage}>
-          <main className={"flex flex-1 items-center justify-center"}>
+          <main
+            className={
+              "flex flex-1 items-center justify-center px-4 py-6 sm:p-8"
+            }
+          >
             <form
-              className={"flex flex-col items-center"}
+              className={"flex w-full max-w-sm flex-col items-center"}
               noValidate
               onSubmit={(e) => {
                 e.preventDefault();
                 void handleSubmit(onSubmit)(e);
               }}
             >
-              <label
-                htmlFor={"message"}
-                className={errors.message ? "text-red-600" : undefined}
-              >
-                {"メッセージ"}
-              </label>
-              <input
-                id={"message"}
-                className={
-                  `mt-2 mb-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl border bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition-colors focus:ring-4 ${messageInputStateClassName}`
-                }
-                {...register("message")}
-              />
-              <p className={"mb-4 text-red-600"}>
-                {errors.message?.message}
-              </p>
+              <div className={"flex w-full flex-col gap-2"}>
+                <label
+                  htmlFor={"message"}
+                  className={errors.message ? "text-red-600" : undefined}
+                >
+                  {"メッセージ"}
+                </label>
+                <input
+                  id={"message"}
+                  className={
+                    `w-full rounded-xl border bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition-colors focus:ring-4 ${messageInputStateClassName}`
+                  }
+                  {...register("message")}
+                />
+                {errors.message && (
+                  <p className={"text-red-600"}>{errors.message.message}</p>
+                )}
+              </div>
 
-              <button className={"rounded bg-[#7cc7e8] px-4 py-2 shadow"}>
+              <button
+                className={"mt-6 rounded bg-[#7cc7e8] px-4 py-2 shadow"}
+              >
                 {"πで伝える"}
               </button>
             </form>

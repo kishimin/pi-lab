@@ -10,7 +10,9 @@ export const MessageResult = (props: Props) => {
 
   return (
     <section
-      className={"flex flex-1 flex-col items-center justify-center gap-4"}
+      className={
+        "flex flex-1 flex-col items-center justify-center gap-6 px-4 py-6 text-center sm:p-8"
+      }
     >
       <h2>{message}</h2>
 
