@@ -16,6 +16,7 @@ export const PiMessagePage = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<PiMessageInputSchema>({
     resolver: zodResolver(piMessageInputSchema),
     mode: "onChange",
@@ -35,6 +36,11 @@ export const PiMessagePage = () => {
 
   const onSubmit = () => {
     setPageType("progress");
+  };
+
+  const onClickRetryButton = () => {
+    reset();
+    setPageType("input");
   };
 
   switch (pageType) {
@@ -83,7 +89,7 @@ export const PiMessagePage = () => {
         <Layout title={pageTitles.piMessage}>
           <MessageResult
             message={generateMessageResult()}
-            onClickRetryButton={() => setPageType("input")}
+            onClickRetryButton={onClickRetryButton}
           />
         </Layout>
       );
