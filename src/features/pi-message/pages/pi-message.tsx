@@ -60,7 +60,9 @@ export const PiMessagePage = () => {
               />
               <p>{errors.message?.message}</p>
 
-              <button>{"πで伝える"}</button>
+              <button className={"rounded bg-[#7cc7e8] px-4 py-2 shadow"}>
+                {"πで伝える"}
+              </button>
             </form>
           </main>
         </Layout>
