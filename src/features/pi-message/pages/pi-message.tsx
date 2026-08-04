@@ -50,7 +50,12 @@ export const PiMessagePage = () => {
                 void handleSubmit(onSubmit)(e);
               }}
             >
-              <label htmlFor={"message"}>{"メッセージ"}</label>
+              <label
+                htmlFor={"message"}
+                className={errors.message ? "text-red-600" : undefined}
+              >
+                {"メッセージ"}
+              </label>
               <input
                 id={"message"}
                 className={
