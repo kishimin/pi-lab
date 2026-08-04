@@ -43,6 +43,7 @@ export const PiMessagePage = () => {
         <Layout title={pageTitles.piMessage}>
           <main className={"flex flex-1 items-center justify-center"}>
             <form
+              className={"flex flex-col items-center"}
               noValidate
               onSubmit={(e) => {
                 e.preventDefault();
