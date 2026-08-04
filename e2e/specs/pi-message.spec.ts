@@ -20,6 +20,7 @@ test.describe("πで伝える", () => {
     });
 
     await test.step("メッセージ結果表示", async () => {
+      await expect(piMessagePage.messageResult.getMessageResult).toBeVisible();
       await expect(piMessagePage.messageResult.getRetryButton).toBeVisible();
     });
   });

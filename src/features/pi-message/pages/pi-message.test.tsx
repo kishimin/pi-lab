@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { PiMessagePage } from "./pi-message";
 import userEvent from "@testing-library/user-event";
 import { act } from "react";
@@ -39,8 +39,16 @@ test("待機状態から2秒後別のメッセージの結果画面が表示さ�
     await vi.advanceTimersByTimeAsync(2000);
   });
 
+  const messageResult = screen.getByRole("region", {
+    name: "メッセージ結果",
+  });
   expect(
-    screen.getByRole("button", { name: "別のメッセージを試す" }),
+    within(messageResult).getByRole("heading"),
+  ).toBeVisible();
+  expect(
+    within(messageResult).getByRole("button", {
+      name: "別のメッセージを試す",
+    }),
   ).toBeVisible();
   expect(screen.getByRole("banner")).toBeVisible();
 });
@@ -53,8 +61,13 @@ test("別のメッセージを試すボタンをクリックすると空のメ�
     await vi.advanceTimersByTimeAsync(2000);
   });
 
+  const messageResult = screen.getByRole("region", {
+    name: "メッセージ結果",
+  });
   await user.click(
-    screen.getByRole("button", { name: "別のメッセージを試す" }),
+    within(messageResult).getByRole("button", {
+      name: "別のメッセージを試す",
+    }),
   );
 
   expect(screen.getByRole("textbox", { name: "メッセージ" })).toHaveValue("");
@@ -68,6 +81,6 @@ test("メッセージ入力画面から2秒後別のメッセージの結果画�
   });
 
   expect(
-    screen.queryByRole("button", { name: "別のメッセージを試す" }),
+    screen.queryByRole("region", { name: "メッセージ結果" }),
   ).not.toBeInTheDocument();
 });

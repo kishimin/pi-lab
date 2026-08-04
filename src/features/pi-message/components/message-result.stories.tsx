@@ -18,15 +18,21 @@ export const Default: Story = {
     message: "πでは伝わりません",
   },
   play: async ({ step, canvas, args }) => {
+    const messageResult = canvas.getByRole("region", {
+      name: "メッセージ結果",
+    });
+
     await step("メッセージの結果が表示される", async () => {
       await expect(
-        canvas.getByRole("heading", { name: args.message }),
+        messageResult.getByRole("heading", { name: args.message }),
       ).toBeVisible();
     });
 
     await step("別のメッセージを試すボタンが表示される", async () => {
       await expect(
-        canvas.getByRole("button", { name: "別のメッセージを試す" }),
+        messageResult.getByRole("button", {
+          name: "別のメッセージを試す",
+        }),
       ).toBeVisible();
     });
   },

@@ -7,12 +7,13 @@ export class MessageResult {
 
   /** Initialize */
   constructor(page: Page) {
-    this.getMessageResult = page.getByRole("heading", {
-      level: 2,
-      name: /伝/,
+    const messageResult = page.getByRole("region", {
+      name: "メッセージ結果",
     });
-    this.getRetryButton = page.getByRole("button", {
-      name: /別のメッセージを試す/,
+
+    this.getMessageResult = messageResult.getByRole("heading");
+    this.getRetryButton = messageResult.getByRole("button", {
+      name: "別のメッセージを試す",
     });
   }
 
