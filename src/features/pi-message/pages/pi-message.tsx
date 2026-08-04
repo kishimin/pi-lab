@@ -51,7 +51,13 @@ export const PiMessagePage = () => {
               }}
             >
               <label htmlFor={"message"}>{"メッセージ"}</label>
-              <input id={"message"} {...register("message")} />
+              <input
+                id={"message"}
+                className={
+                  "mt-2 mb-2 w-80 max-w-[calc(100vw-2rem)] rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition-colors hover:border-slate-400 focus:border-sky-500 focus:ring-4 focus:ring-sky-100"
+                }
+                {...register("message")}
+              />
               <p>{errors.message?.message}</p>
 
               <button>{"πで伝える"}</button>
