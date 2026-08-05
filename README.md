@@ -1,239 +1,183 @@
 <div id="top"></div>
 
-## Tech Stack
+# 割り切れない研究所（PiLoop）
 
-<!-- Select and keep only the badges used in your project. -->
-<p style="display: inline">
-  <img src="https://img.shields.io/badge/-Node.js-000000.svg?logo=node.js&style=for-the-badge">
-  <img src="https://img.shields.io/badge/-Vite-646CFF.svg?logo=vite&style=for-the-badge&logoColor=white">
-  <img src="https://img.shields.io/badge/-React-20232A.svg?logo=react&style=for-the-badge&logoColor=61DAFB">
-  <img src="https://img.shields.io/badge/-TypeScript-3178C6.svg?logo=typescript&style=for-the-badge&logoColor=white">
+πを題材にした、少し変わったWeb体験を集める研究所です。
+
+<p>
+  <img alt="Node.js" src="https://img.shields.io/badge/-Node.js-000000.svg?logo=node.js&style=for-the-badge">
+  <img alt="Vite" src="https://img.shields.io/badge/-Vite-646CFF.svg?logo=vite&style=for-the-badge&logoColor=white">
+  <img alt="React" src="https://img.shields.io/badge/-React-20232A.svg?logo=react&style=for-the-badge&logoColor=61DAFB">
+  <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-3178C6.svg?logo=typescript&style=for-the-badge&logoColor=white">
+  <img alt="Tailwind CSS" src="https://img.shields.io/badge/-Tailwind_CSS-06B6D4.svg?logo=tailwindcss&style=for-the-badge&logoColor=white">
 </p>
 
-## Table of Contents
+## 目次
 
-1. [Project Name](#project-name)
-2. [About the Project](#about-the-project)
-3. [Environment](#environment)
-4. [Directory Structure](#directory-structure)
-5. [Getting Started](#getting-started)
-6. [Available Commands](#available-commands)
-7. [Troubleshooting](#troubleshooting)
+1. [プロジェクトについて](#プロジェクトについて)
+2. [提供中の体験](#提供中の体験)
+3. [技術スタック](#技術スタック)
+4. [ディレクトリ構成](#ディレクトリ構成)
+5. [セットアップ](#セットアップ)
+6. [コマンド](#コマンド)
+7. [テスト](#テスト)
+8. [ライセンス](#ライセンス)
 
-## Project Name
+## プロジェクトについて
 
-<!-- Enter the project name. -->
+割り切れない研究所は、数学と日常のコミュニケーションを組み合わせた、遊び心のあるWebアプリケーションです。
 
-PiLoop
+役に立つとは限らなくても、誰かに共有したくなる体験を目指しています。
 
-## About the Project
+## 提供中の体験
 
-<!-- Describe the purpose and overview of the project. -->
+### πで伝える
 
-PiLoop is a collection of playful and slightly unusual web experiences inspired by π.
+メッセージを入力し、πではうまく伝わらない結果を楽しむコンテンツです。入力、処理中、結果、再試行までの一連の画面を提供しています。
 
-By combining mathematics with everyday communication, the project aims to create experiences that may not be particularly useful, but are fun enough to make you want to share them with someone.
+<p align="right">(<a href="#top">ページ上部へ</a>)</p>
 
-This project includes the following three experiences:
+## 技術スタック
 
-- Pi Message
-- Pi Receipt
-- Pi Approximation Atlas
+| 分類 | 技術 |
+| --- | --- |
+| UI | React 19、TypeScript 6 |
+| ビルド | Vite 8 |
+| スタイリング | Tailwind CSS 4 |
+| ルーティング | React Router 7 |
+| フォーム・バリデーション | React Hook Form、Zod |
+| Unit / Component Test | Vitest、Testing Library |
+| UIカタログ | Storybook 10 |
+| E2E / Visual Regression Test | Playwright 1.61 |
 
-<!-- Add links to specifications, Wiki pages, or project documents if necessary. -->
+依存パッケージの正確なバージョンは[`package.json`](./package.json)を参照してください。
 
-<p align="left">
-  <a href="[PROJECT_DOCUMENT_URL]"><strong>Project Documentation »</strong></a>
-</p>
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Environment
-
-<!-- Update the versions to match the project. -->
-
-| Language / Framework | Version   |
-| -------------------- | --------- |
-| Node.js              | [VERSION] |
-| React                | [VERSION] |
-| Vite                 | [VERSION] |
-| TypeScript           | [VERSION] |
-
-See `package.json` for other package versions.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Directory Structure
-
-<!-- Update the tree to match the actual project structure. -->
+## ディレクトリ構成
 
 ```text
 .
-├── .github
-│   └── workflows
-├── public
-├── src
-│   ├── app
-│   ├── assets
-│   ├── components
-│   ├── features
-│   ├── hooks
-│   ├── pages
-│   ├── routes
-│   ├── styles
-│   ├── types
-│   ├── utils
-│   ├── App.tsx
-│   └── main.tsx
-├── .gitignore
-├── eslint.config.js
-├── index.html
-├── package-lock.json
-├── package.json
-├── README.md
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.node.json
-└── vite.config.ts
+├── .github/
+│   └── workflows/              # GitHub Actions
+├── .storybook/                 # Storybook設定
+├── e2e/
+│   ├── components/             # E2E用Component Object
+│   ├── fixtures/               # Playwrightの共通fixture
+│   ├── pages/                  # Page Object Model
+│   └── specs/                  # E2E・VRTのspecと基準画像
+├── public/                     # 静的ファイル
+├── src/
+│   ├── app/                    # アプリケーションとルーティング
+│   ├── assets/                 # 画像などのアセット
+│   ├── components/             # 共有UIコンポーネント
+│   ├── features/
+│   │   ├── pi-loop/            # 研究所の一覧画面
+│   │   └── pi-message/         # 「πで伝える」機能
+│   ├── tests/                  # テスト共通設定
+│   ├── types/                  # 共有型・ページ定義
+│   ├── index.css               # グローバルスタイル
+│   └── main.tsx                # エントリーポイント
+├── playwright.config.ts        # Playwright設定
+├── vite.config.ts              # Vite・Vitest設定
+└── package.json
 ```
 
-### Main Directories
+<p align="right">(<a href="#top">ページ上部へ</a>)</p>
 
-| Directory        | Description                    |
-| ---------------- | ------------------------------ |
-| `src/app`        | Application-wide configuration |
-| `src/assets`     | Images and static assets       |
-| `src/components` | Shared UI components           |
-| `src/features`   | Feature-based modules          |
-| `src/hooks`      | Shared custom hooks            |
-| `src/pages`      | Page components                |
-| `src/routes`     | Routing configuration          |
-| `src/styles`     | Global styles                  |
-| `src/types`      | Shared TypeScript types        |
-| `src/utils`      | Shared utility functions       |
+## セットアップ
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+### 必要なもの
 
-## Getting Started
+- Node.js
+- npm
 
-### Prerequisites
-
-Install the Node.js version required by this project.
-
-You can use a version manager such as `nvm`, `fnm`, or `Volta`.
-
-### Clone the Repository
+### リポジトリの取得
 
 ```bash
-git clone [REPOSITORY_URL]
-cd [PROJECT_DIRECTORY]
+git clone git@github.com:kishimin/pi-lab.git
+cd pi-lab
 ```
 
-### Install Dependencies
+### 依存パッケージのインストール
 
 ```bash
 npm install
+npx playwright install
 ```
 
-### Start the Development Server
+### 開発サーバーの起動
 
 ```bash
 npm run dev
 ```
 
-Open the URL displayed in the terminal.
+既定では `http://localhost:5173` で起動します。
 
-The default Vite development URL is usually:
+<p align="right">(<a href="#top">ページ上部へ</a>)</p>
 
-```text
-http://localhost:5173
-```
+## コマンド
 
-### Build for Production
+| コマンド | 内容 |
+| --- | --- |
+| `npm run dev` | 開発サーバーを起動する |
+| `npm run build` | 型チェック後にプロダクションビルドを作成する |
+| `npm run preview` | プロダクションビルドをローカルで確認する |
+| `npm run lint` | ESLintを実行する |
+| `npm run typecheck` | TypeScriptの型チェックを実行する |
+| `npm run typecheck:full` | ライブラリを含む完全な型チェックを実行する |
+| `npm run test` | Vitestを実行する |
+| `npm run test-coverage` | Vitestのカバレッジを取得する |
+| `npm run storybook` | Storybookをポート6006で起動する |
+| `npm run build-storybook` | Storybookの静的ビルドを作成する |
+| `npm run test-storybook` | Storybook Test Runnerを実行する |
+| `npm run playwright` | PlaywrightのE2Eテストを実行する |
+| `npm run screenshots:pi-message` | Chromiumで「πで伝える」のE2Eテストを実行する |
 
-```bash
-npm run build
-```
+## テスト
 
-The production build is generated in the `dist` directory.
-
-### Preview the Production Build
-
-```bash
-npm run preview
-```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Available Commands
-
-| Command           | Description                                     |
-| ----------------- | ----------------------------------------------- |
-| `npm install`     | Install dependencies                            |
-| `npm run dev`     | Start the development server                    |
-| `npm run build`   | Run type checking and create a production build |
-| `npm run preview` | Preview the production build locally            |
-| `npm run lint`    | Run ESLint                                      |
-
-<!-- Add these commands when testing tools are configured. -->
-
-| Command                 | Description             |
-| ----------------------- | ----------------------- |
-| `npm run test`          | Run tests               |
-| `npm run test:coverage` | Run tests with coverage |
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Troubleshooting
-
-### `npm install` fails
-
-Check the installed Node.js version.
+### Unit・Component Test
 
 ```bash
-node --version
+npm run test -- --run
 ```
 
-Make sure it matches the version required by the project.
+`src/**/*.test.ts`と`src/**/*.test.tsx`で、ロジック、バリデーション、画面操作、ルーティングを検証します。
 
-### The development port is already in use
-
-Another process may be using Vite's default port.
-
-Check the URL displayed in the terminal. Vite may automatically start the development server on another available port.
-
-### `Module not found` or dependency errors
-
-Reinstall the dependencies.
+### Storybook
 
 ```bash
-rm -rf node_modules
-npm install
+npm run storybook
 ```
 
-If the issue persists, remove the lock file and reinstall the dependencies.
+共有コンポーネントと各画面の状態をStorybookで確認できます。
+
+### E2E Test
 
 ```bash
-rm -rf node_modules package-lock.json
-npm install
+npm run playwright
 ```
 
-### The production build fails with TypeScript errors
+Playwrightは開発サーバーを自動起動し、一覧画面から「πで伝える」の結果・再試行までを検証します。`e2e/fixtures/test.ts`が共通のページ遷移とPage Objectを提供し、各specは利用するfixtureを受け取ります。
 
-Run the build command and review the reported type errors.
+### Visual Regression Test
+
+VRTはChromiumのDesktop Chrome環境で、主要な画面状態をリポジトリ内の基準画像と比較します。
 
 ```bash
-npm run build
+npx playwright test e2e/specs/vrt.spec.ts --project=chromium
 ```
 
-Fix the type errors and run the build again.
-
-### The browser does not reflect recent changes
-
-Restart the development server.
+意図したデザイン変更で基準画像を更新する場合は、生成された差分を確認してから次を実行します。
 
 ```bash
-npm run dev
+npx playwright test e2e/specs/vrt.spec.ts --project=chromium --update-snapshots
 ```
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+基準画像はOS、ブラウザー、フォントの影響を受けるため、比較時と同じ環境で更新してください。
+
+<p align="right">(<a href="#top">ページ上部へ</a>)</p>
+
+## ライセンス
+
+このプロジェクトは[MIT License](./LICENSE)で公開されています。
+
+<p align="right">(<a href="#top">ページ上部へ</a>)</p>
