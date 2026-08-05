@@ -39,7 +39,7 @@ test.describe("割り切れない研究所 VRT", () => {
     );
     await compareScreenshot(page, "02-pi-message-input.png");
 
-    await page.clock.pauseAt(new Date());
+    await page.clock.pauseAt(Date.now() + 60_000);
     await piMessagePage.messageInput.submitMessage();
     await expect(
       piMessagePage.progressingMessage.getProgressMessage,

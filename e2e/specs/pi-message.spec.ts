@@ -28,7 +28,7 @@ test.describe("πで伝える", () => {
     });
 
     await test.step("待機状態", async () => {
-      await page.clock.pauseAt(new Date());
+      await page.clock.pauseAt(Date.now() + 60_000);
       await piMessagePage.messageInput.submitMessage();
       await expect(
         piMessagePage.progressingMessage.getProgressMessage,
