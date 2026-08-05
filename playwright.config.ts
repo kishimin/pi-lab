@@ -37,28 +37,43 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
+      testIgnore: "**/vrt.spec.ts",
       use: { ...devices["Desktop Chrome"] },
     },
 
     {
       name: "webkit",
+      testIgnore: "**/vrt.spec.ts",
       use: { ...devices["Desktop Safari"] },
     },
 
     /* Test against mobile viewports. */
     {
       name: "Mobile Chrome",
+      testIgnore: "**/vrt.spec.ts",
       use: { ...devices["Pixel 5"] },
     },
     {
       name: "Mobile Safari",
+      testIgnore: "**/vrt.spec.ts",
       use: { ...devices["iPhone 12"] },
     },
 
     /* Test against branded browsers. */
     {
       name: "Microsoft Edge",
+      testIgnore: "**/vrt.spec.ts",
       use: { ...devices["Desktop Edge"], channel: "msedge" },
+    },
+    {
+      name: "Google Chrome VRT",
+      testMatch: "**/vrt.spec.ts",
+      use: {
+        ...devices["Desktop Chrome"],
+        channel: "chrome",
+        video: "on",
+        launchOptions: { slowMo: 2_000 },
+      },
     },
   ],
 

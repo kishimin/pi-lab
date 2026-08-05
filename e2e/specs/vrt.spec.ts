@@ -19,6 +19,7 @@ test.describe("割り切れない研究所 VRTレビュー", () => {
     const piLoopPage = new PiLoopPage(page);
     const piMessagePage = new PiMessagePage(page);
 
+    await page.clock.install();
     await piLoopPage.goto();
     await expect(piLoopPage.getPiMessageLink).toBeVisible();
     await attachReviewScreenshot(page, testInfo, "01-pi-loop");
@@ -33,12 +34,14 @@ test.describe("割り切れない研究所 VRTレビュー", () => {
     );
     await attachReviewScreenshot(page, testInfo, "02-pi-message-input");
 
+    await page.clock.pauseAt(new Date());
     await piMessagePage.messageInput.submitMessage();
     await expect(
       piMessagePage.progressingMessage.getProgressMessage,
     ).toBeVisible();
     await attachReviewScreenshot(page, testInfo, "03-pi-message-progress");
 
+    await page.clock.fastForward(2_000);
     await expect(piMessagePage.messageResult.getMessageResult).toBeVisible();
     await expect(piMessagePage.messageResult.getRetryButton).toBeVisible();
     await attachReviewScreenshot(page, testInfo, "04-pi-message-result");
