@@ -17,6 +17,8 @@ test.describe("πで伝える", () => {
     page,
   }, testInfo) => {
     const piMessagePage = new PiMessagePage(page);
+
+    await page.clock.install();
     await piMessagePage.goto();
 
     await test.step("メッセージを入力", async () => {
@@ -26,6 +28,7 @@ test.describe("πで伝える", () => {
     });
 
     await test.step("待機状態", async () => {
+      await page.clock.pauseAt(new Date());
       await piMessagePage.messageInput.submitMessage();
       await expect(
         piMessagePage.progressingMessage.getProgressMessage,
@@ -34,6 +37,7 @@ test.describe("πで伝える", () => {
     });
 
     await test.step("メッセージ結果表示", async () => {
+      await page.clock.fastForward(2_000);
       await expect(piMessagePage.messageResult.getMessageResult).toBeVisible();
       await expect(piMessagePage.messageResult.getRetryButton).toBeVisible();
       await captureScreenshot(page, testInfo, "result");
