@@ -1,6 +1,5 @@
-import test, { expect, type Page } from "playwright/test";
-import { PiLoopPage } from "../pages/pi-loop-page";
-import { PiMessagePage } from "../pages/pi-message-page";
+import type { Page } from "playwright/test";
+import { expect, test } from "../fixtures/test";
 
 const compareScreenshot = async (page: Page, name: string) => {
   await expect(page).toHaveScreenshot(name, {
@@ -12,14 +11,13 @@ const compareScreenshot = async (page: Page, name: string) => {
 test.describe("割り切れない研究所 VRT", () => {
   test("一覧からπで伝える結果と再試行までの表示を基準画像と比較する", async ({
     page,
+    piLoopPage,
+    piMessagePage,
   }, testInfo) => {
     test.skip(
       testInfo.project.name !== "chromium",
       "VRTの基準画像はデスクトップChromiumに固定する",
     );
-
-    const piLoopPage = new PiLoopPage(page);
-    const piMessagePage = new PiMessagePage(page);
 
     await page.clock.install();
     await page.addInitScript(() => {

@@ -1,5 +1,5 @@
-import test, { expect, type Page, type TestInfo } from "playwright/test";
-import { PiMessagePage } from "../pages/pi-message-page";
+import type { Page, TestInfo } from "playwright/test";
+import { expect, test } from "../fixtures/test";
 
 const captureScreenshot = async (
   page: Page,
@@ -15,9 +15,8 @@ const captureScreenshot = async (
 test.describe("πで伝える", () => {
   test("メッセージを入力して、最終的にメッセージの結果が表示され、別のメッセージを試すことができる", async ({
     page,
+    piMessagePage,
   }, testInfo) => {
-    const piMessagePage = new PiMessagePage(page);
-
     await page.clock.install();
     await piMessagePage.goto();
 
