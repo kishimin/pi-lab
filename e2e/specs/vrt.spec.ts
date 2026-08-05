@@ -13,12 +13,7 @@ test.describe("割り切れない研究所 VRT", () => {
     page,
     piLoopPage,
     piMessagePage,
-  }, testInfo) => {
-    test.skip(
-      testInfo.project.name !== "chromium",
-      "VRTの基準画像はデスクトップChromiumに固定する",
-    );
-
+  }) => {
     await page.clock.install();
     await page.addInitScript(() => {
       Math.random = () => 0.5;
