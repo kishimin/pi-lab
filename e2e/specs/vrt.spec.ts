@@ -1,28 +1,33 @@
-import test, { expect, type Page, type TestInfo } from "playwright/test";
+import test, { expect, type Page } from "playwright/test";
 import { PiLoopPage } from "../pages/pi-loop-page";
 import { PiMessagePage } from "../pages/pi-message-page";
 
-const attachReviewScreenshot = async (
-  page: Page,
-  testInfo: TestInfo,
-  name: string,
-) => {
-  const body = await page.screenshot({ fullPage: true });
-
-  await testInfo.attach(name, { body, contentType: "image/png" });
+const compareScreenshot = async (page: Page, name: string) => {
+  await expect(page).toHaveScreenshot(name, {
+    animations: "disabled",
+    fullPage: true,
+  });
 };
 
-test.describe("割り切れない研究所 VRTレビュー", () => {
-  test("一覧からπで伝える結果と再試行までの表示状態を記録する", async ({
+test.describe("割り切れない研究所 VRT", () => {
+  test("一覧からπで伝える結果と再試行までの表示を基準画像と比較する", async ({
     page,
   }, testInfo) => {
+    test.skip(
+      testInfo.project.name !== "chromium",
+      "VRTの基準画像はデスクトップChromiumに固定する",
+    );
+
     const piLoopPage = new PiLoopPage(page);
     const piMessagePage = new PiMessagePage(page);
 
     await page.clock.install();
+    await page.addInitScript(() => {
+      Math.random = () => 0.5;
+    });
     await piLoopPage.goto();
     await expect(piLoopPage.getPiMessageLink).toBeVisible();
-    await attachReviewScreenshot(page, testInfo, "01-pi-loop");
+    await compareScreenshot(page, "01-pi-loop.png");
 
     await piLoopPage.gotoPiMessage();
     await expect(page).toHaveURL("/pi-message");
@@ -32,23 +37,23 @@ test.describe("割り切れない研究所 VRTレビュー", () => {
     await expect(piMessagePage.messageInput.getMessageInput).toHaveValue(
       "割り切れない研究所",
     );
-    await attachReviewScreenshot(page, testInfo, "02-pi-message-input");
+    await compareScreenshot(page, "02-pi-message-input.png");
 
     await page.clock.pauseAt(new Date());
     await piMessagePage.messageInput.submitMessage();
     await expect(
       piMessagePage.progressingMessage.getProgressMessage,
     ).toBeVisible();
-    await attachReviewScreenshot(page, testInfo, "03-pi-message-progress");
+    await compareScreenshot(page, "03-pi-message-progress.png");
 
     await page.clock.fastForward(2_000);
     await expect(piMessagePage.messageResult.getMessageResult).toBeVisible();
     await expect(piMessagePage.messageResult.getRetryButton).toBeVisible();
-    await attachReviewScreenshot(page, testInfo, "04-pi-message-result");
+    await compareScreenshot(page, "04-pi-message-result.png");
 
     await piMessagePage.messageResult.retryMessage();
     await expect(piMessagePage.messageInput.getMessageInput).toBeVisible();
     await expect(piMessagePage.messageInput.getMessageInput).toHaveValue("");
-    await attachReviewScreenshot(page, testInfo, "05-pi-message-retry");
+    await compareScreenshot(page, "05-pi-message-retry.png");
   });
 });
