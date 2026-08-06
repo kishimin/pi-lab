@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import logoImage from "../assets/pi-lab-logo.png";
+import logoImage from "../assets/pi-lab-logo.svg";
 import { paths } from "../types/page-texts";
 
 export const Header = () => {

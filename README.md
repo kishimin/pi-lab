@@ -102,6 +102,7 @@ cd pi-lab
 ```bash
 npm install
 npx playwright install
+npx playwright install msedge
 ```
 
 ### 開発サーバーの起動
@@ -160,19 +161,25 @@ Playwrightは開発サーバーを自動起動し、一覧画面から「πで�
 
 ### Visual Regression Test
 
-VRTはChromiumのDesktop Chrome環境で、主要な画面状態をリポジトリ内の基準画像と比較します。
+VRTはChromium、WebKit、Mobile Chrome、Mobile Safariの各環境で、主要な画面状態をリポジトリ内の基準画像と比較します。
 
 ```bash
-npx playwright test e2e/specs/vrt.spec.ts --project=chromium
+npx playwright test e2e/specs/vrt.spec.ts
 ```
 
 意図したデザイン変更で基準画像を更新する場合は、生成された差分を確認してから次を実行します。
 
 ```bash
-npx playwright test e2e/specs/vrt.spec.ts --project=chromium --update-snapshots
+npx playwright test e2e/specs/vrt.spec.ts --update-snapshots
 ```
 
-基準画像はOS、ブラウザー、フォントの影響を受けるため、比較時と同じ環境で更新してください。
+基準画像はOS、ブラウザー、フォントの影響を受けます。CI（Linux）との差異を防ぐため、基準画像の更新は次のDockerコマンドで行ってください。
+
+```bash
+docker run --rm --network host -v "$(pwd):/work" -w /work \
+  mcr.microsoft.com/playwright:v1.61.1-noble \
+  bash -c "npm ci && npx playwright test e2e/specs/vrt.spec.ts --update-snapshots"
+```
 
 <p align="right">(<a href="#top">ページ上部へ</a>)</p>
 

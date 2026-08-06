@@ -59,6 +59,9 @@ export default defineConfig({
     {
       name: "Microsoft Edge",
       use: { ...devices["Desktop Edge"], channel: "msedge" },
+      // Edge follows a rolling release independent of the Playwright container version,
+      // so VRT baselines would become stale whenever Edge updates.
+      testIgnore: ["**/vrt.spec.ts"],
     },
   ],
 
