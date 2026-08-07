@@ -8,19 +8,19 @@ type PageObjectFixtures = {
 };
 
 export const test = base.extend<PageObjectFixtures>({
-  page: async ({ baseURL, page }, provide) => {
+  page: async ({ baseURL, page }, use) => {
     if (baseURL === undefined) {
       throw new Error("Playwright baseURL must be configured");
     }
 
     await page.goto(baseURL);
-    await provide(page);
+    await use(page);
   },
-  piLoopPage: async ({ page }, provide) => {
-    await provide(new PiLoopPage(page));
+  piLoopPage: async ({ page }, use) => {
+    await use(new PiLoopPage(page));
   },
-  piMessagePage: async ({ page }, provide) => {
-    await provide(new PiMessagePage(page));
+  piMessagePage: async ({ page }, use) => {
+    await use(new PiMessagePage(page));
   },
 });
 

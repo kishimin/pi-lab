@@ -80,6 +80,12 @@ export default defineConfig([
     },
   },
   {
+    files: ["e2e/**/*.{ts,tsx}"],
+    rules: {
+      "react-hooks/rules-of-hooks": "off",
+    },
+  },
+  {
     files: [
       "**/*.test.{ts,tsx}",
       "**/*.spec.{ts,tsx}",
