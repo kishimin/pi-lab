@@ -4,15 +4,16 @@ import { BasePage } from "./base/base-page";
 /** Pi Loop */
 export class PiLoopPage extends BasePage {
   readonly getList: Locator;
-  readonly getPiMessageLink: Locator;
 
   /** initialize */
   constructor(page: Page) {
     super(page);
     this.getList = page.getByRole("list");
-    this.getPiMessageLink = this.getList
-      .getByRole("listitem")
-      .getByRole("link", { name: /πで伝える/ });
+  }
+
+  /** get link locator by list item name */
+  getListItemLink(name: string | RegExp): Locator {
+    return this.getList.getByRole("listitem").getByRole("link", { name });
   }
 
   /** transition */
@@ -20,8 +21,8 @@ export class PiLoopPage extends BasePage {
     await this.page.goto("/");
   }
 
-  /** move pi message */
-  async gotoPiMessage() {
-    await this.getPiMessageLink.click();
+  /** move to a list item link */
+  async gotoListItem(name: string | RegExp) {
+    await this.getListItemLink(name).click();
   }
 }

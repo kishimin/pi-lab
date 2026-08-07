@@ -19,10 +19,10 @@ test.describe("割り切れない研究所 VRT", () => {
       Math.random = () => 0.5;
     });
     await piLoopPage.goto();
-    await expect(piLoopPage.getPiMessageLink).toBeVisible();
+    await expect(piLoopPage.getListItemLink(/πで伝える/)).toBeVisible();
     await compareScreenshot(page, "01-pi-loop.png");
 
-    await piLoopPage.gotoPiMessage();
+    await piLoopPage.gotoListItem(/πで伝える/);
     await expect(page).toHaveURL("/pi-message");
     await expect(piMessagePage.getPageTitle).toBeVisible();
 
