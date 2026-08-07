@@ -27,7 +27,7 @@ export const Default: Story = {
       const image = within(header).getByAltText("pi-lab-logo-image");
 
       await expect(image).toBeInTheDocument();
-      await expect(image).toHaveAttribute("src", "/src/assets/pi-lab-logo.png");
+      await expect(image).toHaveAttribute("src", "/src/assets/pi-lab-logo.svg");
     });
   },
 };
