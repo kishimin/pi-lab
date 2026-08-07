@@ -3,7 +3,6 @@ import { expect, test } from "../fixtures/test";
 
 const compareScreenshot = async (page: Page, name: string) => {
   await expect(page).toHaveScreenshot(name, {
-    animations: "disabled",
     fullPage: true,
   });
 };
@@ -14,7 +13,6 @@ test.describe("割り切れない研究所 VRT", () => {
     piLoopPage,
     piMessagePage,
   }) => {
-    await page.clock.install();
     await page.addInitScript(() => {
       Math.random = () => 0.5;
     });
@@ -32,14 +30,12 @@ test.describe("割り切れない研究所 VRT", () => {
     );
     await compareScreenshot(page, "02-pi-message-input.png");
 
-    await page.clock.pauseAt(Date.now() + 60_000);
     await piMessagePage.messageInput.submitMessage();
     await expect(
       piMessagePage.progressingMessage.getProgressMessage,
     ).toBeVisible();
     await compareScreenshot(page, "03-pi-message-progress.png");
 
-    await page.clock.fastForward(2_000);
     await expect(piMessagePage.messageResult.getMessageResult).toBeVisible();
     await expect(piMessagePage.messageResult.getRetryButton).toBeVisible();
     await compareScreenshot(page, "04-pi-message-result.png");
