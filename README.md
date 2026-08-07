@@ -181,6 +181,8 @@ docker run --rm --network host -v "$(pwd):/work" -w /work \
   bash -c "npm ci && npx playwright test e2e/specs/vrt.spec.ts --update-snapshots"
 ```
 
+Dockerを使えない場合は、GitHub Actionsの`Update VRT Snapshots`ワークフロー（`workflow_dispatch`）を対象ブランチで手動実行することでも同じ結果を得られます。CIと同じコンテナで基準画像を更新し、差分があれば対象ブランチへ自動コミットします。
+
 <p align="right">(<a href="#top">ページ上部へ</a>)</p>
 
 ## ライセンス
