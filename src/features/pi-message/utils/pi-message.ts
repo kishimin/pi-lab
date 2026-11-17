@@ -1,25 +1,34 @@
+export const resultMessages = [
+  "3.14まで頑張りましたが、伝わりませんでした",
+  "3で伝えるには、雑すぎました",
+  "πでは伝わりません",
+  "τで伝えるのは良いかも",
+  "このメッセージは伝わりません",
+  "eでは伝わるのかな？",
+] as const;
+
 export const generateMessageResult = (): string => {
   const result = Math.floor(Math.random() * 100) + 1;
 
   if (result < 30) {
-    return "3.14まで頑張りましたが、伝わりませんでした";
+    return resultMessages[0];
   }
 
   if (result < 40) {
-    return "3で伝えるには、雑すぎました";
+    return resultMessages[1];
   }
 
   if (result < 80) {
-    return "πでは伝わりません";
+    return resultMessages[2];
   }
 
   if (result < 90) {
-    return "τで伝えるのは良いかも";
+    return resultMessages[3];
   }
 
   if (result < 95) {
-    return "このメッセージは伝わりません";
+    return resultMessages[4];
   }
 
-  return "eでは伝わるのかな？";
+  return resultMessages[5];
 };
