@@ -8,3 +8,11 @@ test("共有 URL から結果を復元できる", () => {
 test("不正な共有データは結果として扱わない", () => {
   expect(readSharedResult("#result=unknown")).toBeNull();
 });
+
+test("未知の結果は共有リンクにしない", () => {
+  expect(() => createShareUrl("https://example.com/pi-message", "unknown")).toThrow();
+});
+
+test("共有データがない場合は結果として扱わない", () => {
+  expect(readSharedResult("")).toBeNull();
+});
