@@ -6,11 +6,14 @@ import { Progress } from "../components/progressing-message";
 import { useEffect, useState } from "react";
 import { MessageResult } from "../components/message-result";
 import { generateMessageResult } from "../utils/pi-message";
+import { createShareUrl, readSharedResult } from "../utils/share-result";
 import { Layout } from "../../../components/layout";
 import { pageTitles } from "../../../types/page-texts";
 
 export const PiMessagePage = () => {
-  const [pageType, setPageType] = useState<PageType>("input");
+  const [sharedResult] = useState(() => readSharedResult(window.location.hash));
+  const [result, setResult] = useState<string | null>(sharedResult);
+  const [pageType, setPageType] = useState<PageType>(sharedResult ? "progress" : "input");
 
   const {
     register,
@@ -35,11 +38,14 @@ export const PiMessagePage = () => {
   }, [pageType]);
 
   const onSubmit = () => {
+    setResult(generateMessageResult());
     setPageType("progress");
   };
 
   const onClickRetryButton = () => {
     reset();
+    setResult(null);
+    window.history.replaceState(window.history.state, "", window.location.pathname + window.location.search);
     setPageType("input");
   };
 
@@ -100,7 +106,8 @@ export const PiMessagePage = () => {
       return (
         <Layout title={pageTitles.piMessage}>
           <MessageResult
-            message={generateMessageResult()}
+            message={result ?? "πでは伝わりません"}
+            shareUrl={createShareUrl(new URL("/pi-message", window.location.origin).toString(), result ?? "πでは伝わりません")}
             onClickRetryButton={onClickRetryButton}
           />
         </Layout>
