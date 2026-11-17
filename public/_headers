@@ -2,5 +2,5 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: default-src 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-WFRMLsMGdvJeEZAYZrUympeBpc2cT0AELK1vPulFTTM='; img-src 'self' https://www.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com
   Permissions-Policy: geolocation=(), microphone=(), camera=()
