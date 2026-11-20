@@ -1,6 +1,7 @@
 export const paths = {
   index: "/",
   piMessage: "/pi-message",
+  privacy: "/privacy",
 } as const;
 
 export const pageTitles = {
