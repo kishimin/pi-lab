@@ -44,10 +44,7 @@ describe("RouterContents", () => {
 
     expect(screen.getByRole("heading", { name: "プライバシーポリシー" })).toBeVisible();
     expect(screen.getByText(/Google Analytics/)).toBeVisible();
-    expect(screen.getByRole("link", { name: "お問い合わせフォーム" })).toHaveAttribute(
-      "href",
-      "https://docs.google.com/forms/d/e/1FAIpQLSfLJwKfm5KNU8FC44eO5qQuoWCp0mEiMNW5vveZC0OXtXLnPw/viewform",
-    );
+    expect(screen.queryByRole("link", { name: "お問い合わせフォーム" })).not.toBeInTheDocument();
   });
 
 });
