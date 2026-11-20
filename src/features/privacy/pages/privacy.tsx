@@ -13,7 +13,7 @@ export const PrivacyPage = () => {
         </section>
         <section className={"space-y-3"}>
           <h2 className={"text-xl font-bold"}>{"お問い合わせについて"}</h2>
-          <p>{"お問い合わせには Google フォームを利用しています。お送りいただいた内容と、任意で入力いただくメールアドレスは、お問い合わせへの対応や返信のために利用します。"}</p>
+          <p>{"お問い合わせには Google フォームを利用しています。お名前（ニックネーム可）とお問い合わせ内容を、お問い合わせへの対応のために利用します。"}</p>
           <p><a className={"underline"} href={"https://docs.google.com/forms/d/e/1FAIpQLSfLJwKfm5KNU8FC44eO5qQuoWCp0mEiMNW5vveZC0OXtXLnPw/viewform"}>{"お問い合わせフォーム"}</a></p>
           <p>{"Google における情報の取り扱いは、"}<a className={"underline"} href={"https://policies.google.com/privacy?hl=ja"}>{"Google プライバシーポリシー"}</a>{"をご確認ください。"}</p>
         </section>
