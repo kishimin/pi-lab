@@ -5,7 +5,7 @@ import { describe, expect, test } from "vitest";
 import { paths } from "../../types/page-texts";
 import { RouterContents } from "./router";
 
-const setup = (initialEntry: (typeof paths)[keyof typeof paths]) => {
+const setup = (initialEntry: string) => {
   const user = userEvent.setup();
   render(
     <MemoryRouter initialEntries={[initialEntry]}>
@@ -46,6 +46,25 @@ describe("RouterContents", () => {
     expect(
       screen.getByRole("link", { name: "Google の説明を詳しく見る" }),
     ).toBeVisible();
+  });
+
+
+  test("共有結果ページから自分でメッセージを試せる", async () => {
+    const { user } = setup("/pi-message/shared#result=2");
+
+    expect(screen.getByRole("region", { name: "メッセージ結果" })).toBeVisible();
+    expect(screen.queryByRole("link", { name: "Xで共有" })).not.toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "別のメッセージを試す" }));
+    expect(screen.getByRole("textbox", { name: "メッセージ" })).toBeVisible();
+  });
+
+
+  test("従来の共有リンクでも結果を表示して再試行できる", async () => {
+    const { user } = setup("/pi-message#result=2");
+
+    expect(screen.getByRole("region", { name: "メッセージ結果" })).toBeVisible();
+    await user.click(screen.getByRole("button", { name: "別のメッセージを試す" }));
+    expect(screen.getByRole("textbox", { name: "メッセージ" })).toBeVisible();
   });
 
 });

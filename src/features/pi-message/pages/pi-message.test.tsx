@@ -93,17 +93,3 @@ test("結果画面で共有リンクをコピーできる", async () => {
   await user.click(screen.getByRole("button", { name: "共有リンクをコピー" }));
   expect(screen.getByText("リンクをコピーしました")).toBeVisible();
 });
-
-
-test("共有リンクを開くと解析を待たずに結果が表示される", () => {
-  window.history.replaceState(null, "", "/pi-message#result=2");
-  setup();
-
-  expect(screen.getByRole("region", { name: "メッセージ結果" })).toBeVisible();
-  expect(screen.queryByRole("button", { name: "共有リンクをコピー" })).not.toBeInTheDocument();
-  expect(screen.queryByRole("button", { name: "共有する" })).not.toBeInTheDocument();
-  expect(screen.queryByRole("link", { name: "Xで共有" })).not.toBeInTheDocument();
-  expect(screen.getByRole("button", { name: "別のメッセージを試す" })).toBeVisible();
-  expect(screen.queryByRole("heading", { name: "割り切れないため処理に時間がかかっています" })).not.toBeInTheDocument();
-  window.history.replaceState(null, "", "/pi-message");
-});

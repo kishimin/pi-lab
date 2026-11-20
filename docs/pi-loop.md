@@ -34,6 +34,7 @@
 
 - Message Reception
   - Read message data from the shared URL
+  - Open the shared result on a dedicated page
   - Display the shared result immediately without the analysis animation
   - Show only the result and a way for recipients to try Pi Message themselves
 
