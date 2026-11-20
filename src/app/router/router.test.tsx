@@ -36,4 +36,14 @@ describe("RouterContents", () => {
 
     expect(screen.getByRole("link", { name: "πで伝える" })).toBeVisible();
   });
+
+  test("フッターからプライバシーポリシーを確認できる", async () => {
+    const { user } = setup(paths.index);
+
+    await user.click(screen.getByRole("link", { name: "プライバシーポリシー" }));
+
+    expect(screen.getByRole("heading", { name: "プライバシーポリシー" })).toBeVisible();
+    expect(screen.getByText(/Google Analytics/)).toBeVisible();
+  });
+
 });
