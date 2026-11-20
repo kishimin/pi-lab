@@ -43,8 +43,10 @@ describe("RouterContents", () => {
     await user.click(screen.getByRole("link", { name: "プライバシーポリシー" }));
 
     expect(screen.getByRole("heading", { name: "プライバシーポリシー" })).toBeVisible();
-    expect(screen.getByText(/Google Analytics/)).toBeVisible();
-    expect(screen.queryByRole("link", { name: "お問い合わせフォーム" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Google Analytics によるデータの収集と利用について、Google の説明を詳しく見る" })).toHaveAttribute(
+      "href",
+      "https://support.google.com/analytics/answer/6004245?hl=ja",
+    );
   });
 
 });
