@@ -13,7 +13,7 @@ import { pageTitles } from "../../../types/page-texts";
 export const PiMessagePage = () => {
   const [sharedResult] = useState(() => readSharedResult(window.location.hash));
   const [result, setResult] = useState<string | null>(sharedResult);
-  const [pageType, setPageType] = useState<PageType>(sharedResult ? "progress" : "input");
+  const [pageType, setPageType] = useState<PageType>(sharedResult ? "result" : "input");
 
   const {
     register,
