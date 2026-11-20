@@ -8,4 +8,3 @@
 | 4 | Clipboard API fails | The displayed result link can be selected for manual copying | Browser | Follow-up #16 |
 | 5 | A shared URL contains an invalid result | The invalid value is not treated as a result | Unit | Existing test |
 | 6 | Sharing is cancelled | The copy action remains available | Component | Existing test |
-
