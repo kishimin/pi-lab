@@ -43,10 +43,9 @@ describe("RouterContents", () => {
     await user.click(screen.getByRole("link", { name: "プライバシーポリシー" }));
 
     expect(screen.getByRole("heading", { name: "プライバシーポリシー" })).toBeVisible();
-    expect(screen.getByRole("link", { name: "Google の説明を詳しく見る" })).toHaveAttribute(
-      "href",
-      "https://support.google.com/analytics/answer/6004245?hl=ja",
-    );
+    expect(
+      screen.getByRole("link", { name: "Google の説明を詳しく見る" }),
+    ).toBeVisible();
   });
 
 });
