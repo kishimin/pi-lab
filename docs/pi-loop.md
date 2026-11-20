@@ -34,10 +34,8 @@
 
 - Message Reception
   - Read message data from the shared URL
-  - Display a π analysis animation
-  - Display an animation that appears to restore the message
-  - Present the failed analysis as the punchline
-  - Provide a way for recipients to try Pi Message themselves
+  - Display the shared result immediately without the analysis animation
+  - Show only the result and a way for recipients to try Pi Message themselves
 
 - Experience Enhancements
   - Add additional analysis animation patterns

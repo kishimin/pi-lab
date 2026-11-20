@@ -13,6 +13,7 @@ import { pageTitles } from "../../../types/page-texts";
 export const PiMessagePage = () => {
   const [sharedResult] = useState(() => readSharedResult(window.location.hash));
   const [result, setResult] = useState<string | null>(sharedResult);
+  const [isSharedResult, setIsSharedResult] = useState(sharedResult !== null);
   const [pageType, setPageType] = useState<PageType>(sharedResult ? "result" : "input");
 
   const {
@@ -38,6 +39,7 @@ export const PiMessagePage = () => {
   }, [pageType]);
 
   const onSubmit = () => {
+    setIsSharedResult(false);
     setResult(generateMessageResult());
     setPageType("progress");
   };
@@ -107,7 +109,7 @@ export const PiMessagePage = () => {
         <Layout title={pageTitles.piMessage}>
           <MessageResult
             message={result ?? "πでは伝わりません"}
-            shareUrl={createShareUrl(new URL("/pi-message", window.location.origin).toString(), result ?? "πでは伝わりません")}
+            shareUrl={isSharedResult ? undefined : createShareUrl(new URL("/pi-message", window.location.origin).toString(), result ?? "πでは伝わりません")}
             onClickRetryButton={onClickRetryButton}
           />
         </Layout>
