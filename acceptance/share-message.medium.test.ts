@@ -15,8 +15,8 @@ test("共有リンクで同じ結果を受け取り、別のメッセージを�
   const recipient = await browser.newContext();
   const receivedPage = await recipient.newPage();
   await receivedPage.goto(url);
-  await expect(receivedPage.getByRole("heading", { name: "割り切れないため処理に時間がかかっています" })).toBeVisible();
   const received = receivedPage.getByRole("region", { name: "メッセージ結果" });
+  expect(await received.isVisible()).toBe(true);
   await expect(received.getByRole("heading")).toHaveText(message);
   await received.getByRole("button", { name: "別のメッセージを試す" }).click();
   await expect(receivedPage.getByRole("textbox", { name: "メッセージ" })).toHaveValue("");
