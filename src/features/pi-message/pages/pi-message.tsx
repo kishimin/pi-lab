@@ -6,11 +6,16 @@ import { Progress } from "../components/progressing-message";
 import { useEffect, useState } from "react";
 import { MessageResult } from "../components/message-result";
 import { generateMessageResult } from "../utils/pi-message";
+import { createShareUrl, readSharedResult } from "../utils/share-result";
 import { Layout } from "../../../components/layout";
-import { pageTitles } from "../../../types/page-texts";
+import { pageTitles, paths } from "../../../types/page-texts";
+import { Navigate, useLocation } from "react-router";
 
 export const PiMessagePage = () => {
-  const [pageType, setPageType] = useState<PageType>("input");
+  const { hash } = useLocation();
+  const [sharedResult] = useState(() => readSharedResult(hash));
+  const [result, setResult] = useState<string | null>(sharedResult);
+  const [pageType, setPageType] = useState<PageType>(sharedResult ? "result" : "input");
 
   const {
     register,
@@ -35,13 +40,18 @@ export const PiMessagePage = () => {
   }, [pageType]);
 
   const onSubmit = () => {
+    setResult(generateMessageResult());
     setPageType("progress");
   };
 
   const onClickRetryButton = () => {
     reset();
+    setResult(null);
+    window.history.replaceState(window.history.state, "", window.location.pathname + window.location.search);
     setPageType("input");
   };
+
+  if (sharedResult !== null) return <Navigate to={`${paths.sharedMessage}${hash}`} replace />;
 
   const messageInputStateClassName = errors.message
     ? "border-red-600 hover:border-red-700 focus:border-red-600 focus:ring-red-100"
@@ -100,7 +110,8 @@ export const PiMessagePage = () => {
       return (
         <Layout title={pageTitles.piMessage}>
           <MessageResult
-            message={generateMessageResult()}
+            message={result ?? "πでは伝わりません"}
+            shareUrl={createShareUrl(new URL(paths.sharedMessage, window.location.origin).toString(), result ?? "πでは伝わりません")}
             onClickRetryButton={onClickRetryButton}
           />
         </Layout>

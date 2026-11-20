@@ -14,6 +14,7 @@ import tseslint from "typescript-eslint";
 // import react from "eslint-plugin-react";
 
 export default defineConfig([
+  { ignores: ["dist/**", "dist-ssr/**", "coverage/**", "storybook-static/**", "playwright-report/**", "test-results/**", "blob-report/**"] },
   {
     plugins: {
       "unused-imports": unusedImports,

@@ -84,3 +84,12 @@ test("メッセージ入力画面から2秒後別のメッセージの結果画�
     screen.queryByRole("region", { name: "メッセージ結果" }),
   ).not.toBeInTheDocument();
 });
+
+test("結果画面で共有リンクをコピーできる", async () => {
+  const { user } = setup();
+  await user.type(screen.getByRole("textbox", { name: "メッセージ" }), "ありがとう");
+  await user.click(screen.getByRole("button", { name: "πで伝える" }));
+  await act(async () => { await vi.advanceTimersByTimeAsync(2000); });
+  await user.click(screen.getByRole("button", { name: "共有リンクをコピー" }));
+  expect(screen.getByText("リンクをコピーしました")).toBeVisible();
+});

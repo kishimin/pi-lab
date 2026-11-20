@@ -1,6 +1,7 @@
 export const paths = {
   index: "/",
   piMessage: "/pi-message",
+  sharedMessage: "/pi-message/shared",
   privacy: "/privacy",
 } as const;
 

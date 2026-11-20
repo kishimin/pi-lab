@@ -10,7 +10,7 @@ import {
 import viteConfig from "./vite.config.ts";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
-const defaultAndE2EExcludes = [...configDefaults.exclude, "**/e2e/**"];
+const defaultAndE2EExcludes = [...configDefaults.exclude, "**/e2e/**", "**/acceptance/**"];
 
 export default mergeConfig(
   viteConfig,
