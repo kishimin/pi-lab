@@ -20,6 +20,8 @@ jobs:
       run: npx playwright install msedge
     - name: Run Playwright tests
       run: npx playwright test
+    - name: Run receipt acceptance tests
+      run: npx playwright test --config=playwright.receipt-acceptance.config.ts
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
