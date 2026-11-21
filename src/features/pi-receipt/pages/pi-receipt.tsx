@@ -5,7 +5,7 @@ import { calculateReceipt, type ReceiptItem } from "../utils/receipt";
 type DraftItem = { name: string; price: string };
 type Receipt = { items: ReceiptItem[]; note: string };
 
-const notes = ["πのように、続きが気になるお買い物。", "今日も割り切れない一日を。", "円周率と一緒に、またのお越しを。"];
+const notes = ["πのかけら", "円周のひと休み", "無限のひと粒"];
 const newNote = () => notes[Math.floor(Math.random() * notes.length)];
 
 const createImage = async (receipt: Receipt): Promise<File> => {
@@ -30,7 +30,7 @@ const createImage = async (receipt: Receipt): Promise<File> => {
     y += 46;
   }
   context.textAlign = "left";
-  for (const line of [`小計 ¥${totals.subtotal.toLocaleString("ja-JP")}`, `架空税率 3.14% ¥${totals.tax.toLocaleString("ja-JP")}`, `合計 ¥${totals.total.toLocaleString("ja-JP")}`, `πポイント ${totals.points}`, receipt.note]) {
+  for (const line of [`πのおまけ: ${receipt.note} ¥0`, `小計 ¥${totals.subtotal.toLocaleString("ja-JP")}`, `架空税率 3.14% ¥${totals.tax.toLocaleString("ja-JP")}`, `合計 ¥${totals.total.toLocaleString("ja-JP")}`, `πポイント ${totals.points}`]) {
     context.fillText(line, 40, y, 640);
     y += 43;
   }
@@ -108,11 +108,11 @@ export const PiReceiptPage = () => {
         {receipt && totals && (
           <section aria-label="πレシート" className="mt-8 space-y-3 rounded-xl border p-5">
             {receipt.items.map((item, index) => <p key={index} className="flex justify-between gap-4"><span>{item.name}</span><span>¥{item.price.toLocaleString("ja-JP")}</span></p>)}
+            <p className="flex justify-between gap-4"><span>πのおまけ: {receipt.note}</span><span>¥0</span></p>
             <p>小計 ¥{totals.subtotal.toLocaleString("ja-JP")}</p>
             <p>架空税率 3.14% ¥{totals.tax.toLocaleString("ja-JP")}</p>
             <p><span>合計</span> ¥{totals.total.toLocaleString("ja-JP")}</p>
             <p><span>πポイント</span> {totals.points}</p>
-            <p>{receipt.note}</p>
             <div className="flex flex-wrap gap-4">
               <button type="button" className="rounded bg-[#7cc7e8] px-4 py-2" onClick={() => void saveImage()}>画像を保存</button>
               {typeof navigator.share === "function" && typeof navigator.canShare === "function" && <button type="button" className="rounded bg-[#7cc7e8] px-4 py-2" onClick={() => void shareImage()}>画像を共有</button>}
