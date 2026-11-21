@@ -83,6 +83,7 @@ export const PiReceiptPage = () => {
         return;
       }
       await navigator.share({ files: [file], title: "πレシート" });
+      setImageError("");
     } catch {
       setImageError("共有できませんでした。画像を保存することもできます。");
     }
