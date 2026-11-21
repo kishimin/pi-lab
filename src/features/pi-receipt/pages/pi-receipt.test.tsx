@@ -93,3 +93,18 @@ test("対応端末でレシート画像を共有できる", async () => {
   await user.click(screen.getByRole("button", { name: "画像を共有" }));
   expect(share).toHaveBeenCalled();
 });
+
+test("共有に失敗した後も共有に成功すればエラーは消える", async () => {
+  setupImage();
+  Object.defineProperty(navigator, "share", { configurable: true, value: vi.fn().mockResolvedValue(undefined) });
+  const canShare = vi.fn().mockReturnValueOnce(false).mockReturnValue(true);
+  Object.defineProperty(navigator, "canShare", { configurable: true, value: canShare });
+  const { user } = setup();
+  await user.type(screen.getByRole("textbox", { name: "商品名" }), "コーヒー");
+  await user.type(screen.getByRole("spinbutton", { name: "金額" }), "314");
+  await user.click(screen.getByRole("button", { name: "レシートを作る" }));
+  await user.click(screen.getByRole("button", { name: "画像を共有" }));
+  expect(await screen.findByRole("alert")).toBeVisible();
+  await user.click(screen.getByRole("button", { name: "画像を共有" }));
+  expect(screen.queryByRole("alert")).not.toBeInTheDocument();
+});
