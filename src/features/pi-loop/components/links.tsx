@@ -9,6 +9,9 @@ export const Links = () => {
           {"πで伝える"}
         </Link>
       </li>
+      <li>
+        <Link className={"text-xl"} to={paths.piReceipt}>{"πレシート"}</Link>
+      </li>
     </ul>
   );
 };

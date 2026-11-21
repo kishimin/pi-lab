@@ -48,4 +48,13 @@ describe("RouterContents", () => {
     ).toBeVisible();
   });
 
+
+  test("一覧画面からπレシート画面に遷移する", async () => {
+    const { user } = setup(paths.index);
+
+    await user.click(screen.getByRole("link", { name: "πレシート" }));
+
+    expect(screen.getByRole("heading", { name: "πレシート" })).toBeVisible();
+  });
+
 });

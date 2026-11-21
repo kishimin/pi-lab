@@ -1,6 +1,7 @@
 export const paths = {
   index: "/",
   piMessage: "/pi-message",
+  piReceipt: "/pi-receipt",
   privacy: "/privacy",
 } as const;
 
